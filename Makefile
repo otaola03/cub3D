@@ -6,7 +6,7 @@
 #    By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 14:10:40 by jperez            #+#    #+#              #
-#    Updated: 2023/03/17 17:36:02 by jperez           ###   ########.fr        #
+#    Updated: 2023/03/17 17:47:35 by jperez           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,23 +72,24 @@ CFLAGS = -Wall -Werror -Wextra
 RM = -rm -rf
 
 
-SRCS = main.c	\
+SRCS = pruevas/main.c	\
 
-OBJ := $(SRC:%.c=%.o)
+OBJS := $(SRCS:%.c=%.o)
 
 all: $(NAME)
 
-$O:
-	@echo "Creating Objects Folder...."
-	mkdir $@
-	@echo "Folder created."
-
-$(OBJS): | $O
-
-$(OBJS): $O%.o: $S%.c
-#	$(CC) $(CFLAGS) -Imlx_linux -O3 -c $< -o $@
-	$(CC) $(CFLAGS) -Imlx -O3 -c $< -o $@
-
+#$O:
+#	@echo "Creating Objects Folder...."
+#	mkdir $@
+#	@echo "Folder created."
+#
+#$(OBJS): | $O
+#
+#$(OBJS): $O%.o: $S%.c
+##	$(CC) $(CFLAGS) -Imlx_linux -O3 -c $< -o $@
+#	$(CC) $(CFLAGS) -Imlx -O3 -c $< -o $@
+#
+#
 $(NAME): $(OBJS)
 	$(MAKE) -C mlx 2> logs
 	rm -f logs
