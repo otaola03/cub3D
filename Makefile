@@ -6,7 +6,7 @@
 #    By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 14:10:40 by jperez            #+#    #+#              #
-#    Updated: 2023/03/17 17:47:35 by jperez           ###   ########.fr        #
+#    Updated: 2023/03/19 18:51:37 by jperez           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,17 +62,18 @@ export HEADER
 S = srcs/
 O = objs/
 
-NAME = so_long
+NAME = cub3D 
 
 #F = -fsanitize=address -g3
 
-CC = gcc -O3$(F) 
+CC = gcc $(F) 
 CFLAGS = -Wall -Werror -Wextra
 
 RM = -rm -rf
 
 
-SRCS = pruevas/main.c	\
+SRCS = pruevas/main.c				\
+	   utils/ft_manage_imgs.c		\
 
 OBJS := $(SRCS:%.c=%.o)
 
