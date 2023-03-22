@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:55:17 by jperez            #+#    #+#             */
-/*   Updated: 2023/03/19 18:56:43 by jperez           ###   ########.fr       */
+/*   Updated: 2023/03/21 17:29:15 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 # define CUB3D_H
 
+# define UNIT	64
 
 # include "mlx/mlx.h" 
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <math.h>
 
 typedef struct s_img
 {
@@ -36,5 +38,8 @@ typedef struct s_img
 /* ------------------------------- ft_manage_imgs -------------------------------*/
 t_img *ft_create_img(void *mlx, int width, int height);
 void	ft_edit_img(t_img *img, int width, int height, int color);
+
+/* ------------------------------- ft_create_minimap -------------------------------*/
+void	ft_create_minimap(void *mlx, void *mlx_win, int width, int height);
 
 #endif 

@@ -6,7 +6,7 @@
 #    By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 14:10:40 by jperez            #+#    #+#              #
-#    Updated: 2023/03/19 18:51:37 by jperez           ###   ########.fr        #
+#    Updated: 2023/03/20 13:22:46 by jperez           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,13 +67,14 @@ NAME = cub3D
 #F = -fsanitize=address -g3
 
 CC = gcc $(F) 
-CFLAGS = -Wall -Werror -Wextra
+#CFLAGS = -Wall -Werror -Wextra
 
 RM = -rm -rf
 
 
 SRCS = pruevas/main.c				\
 	   utils/ft_manage_imgs.c		\
+	   ft_create_minimap.c			\
 
 OBJS := $(SRCS:%.c=%.o)
 

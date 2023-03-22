@@ -6,11 +6,13 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 18:41:56 by jperez            #+#    #+#             */
-/*   Updated: 2023/03/19 19:02:36 by jperez           ###   ########.fr       */
+/*   Updated: 2023/03/20 13:27:54 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../cub3d.h"
+
+# define WIDTH 2
 
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color)
 {
@@ -41,7 +43,7 @@ void	ft_edit_img(t_img *img, int width, int height, int color)
 		x = -1;
 		while (++x < width)
 		{
-			if (y == 0 || y == height - 1 || x == 0 || x == width - 1)
+			if ((0 <= x && x < WIDTH) || (0 <= y && y < WIDTH) || (width - WIDTH < x && x < width) || (height- WIDTH < y && y < height))
 				my_mlx_pixel_put(img, x, y, 0xC5FF00);
 			else
 				my_mlx_pixel_put(img, x, y, color);
