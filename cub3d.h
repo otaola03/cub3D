@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:55:17 by jperez            #+#    #+#             */
-/*   Updated: 2023/03/21 17:29:15 by jperez           ###   ########.fr       */
+/*   Updated: 2023/03/22 20:09:52 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,30 @@ void	ft_edit_img(t_img *img, int width, int height, int color);
 
 /* ------------------------------- ft_create_minimap -------------------------------*/
 void	ft_create_minimap(void *mlx, void *mlx_win, int width, int height);
+
+/*===============================================================================*/
+/*									RAYCASTING									 */
+/*===============================================================================*/
+
+/* ------------------------------- ft_create_minimap -------------------------------*/
+double	ft_horizontal_colisions(double player_x, double player_y,  double angle, char **map);
+double	ft_vertical_colisions(double player_x, double player_y,  double angle, char **map);
+double	ft_y_colisions(double player_x, double player_y,  double angle, char **map);
+double	ft_x_colisions(double player_x, double player_y,  double angle, char **map);
+
+/* ------------------------------- ft_create_minimap -------------------------------*/
+void	ft_assing_y_variable(double player_y, double angle, double *ray_gap_y, double *ray_y);
+void	ft_assing_x_variable(double player_x, double angle, double *ray_gap_x, double *ray_x);
+
+/* ------------------------------- ft_create_minimap -------------------------------*/
+int	ft_raycasting(double player_x, double player_y, double angle, char **map);
+
+/* ------------------------------- ft_create_minimap -------------------------------*/
+double	ft_get_distance(double player_x, double player_y, double ray_x, double ray_y);
+int	ft_check_wall(char **map, double ray_x, double ray_y);
+int	ft_angle_in_range(double angle, double start, double end);
+
+/* ------------------------------- ft_create_minimap -------------------------------*/
+double	ft_normalize_angle(double angle);
 
 #endif 

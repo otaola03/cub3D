@@ -6,7 +6,7 @@
 #    By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 14:10:40 by jperez            #+#    #+#              #
-#    Updated: 2023/03/20 13:22:46 by jperez           ###   ########.fr        #
+#    Updated: 2023/03/22 20:10:19 by jperez           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,6 +75,12 @@ RM = -rm -rf
 SRCS = pruevas/main.c				\
 	   utils/ft_manage_imgs.c		\
 	   ft_create_minimap.c			\
+	   raycasting/ft_assing_xy_variables.c	\
+	   raycasting/ft_raycasting_aux.c	\
+	   raycasting/ft_raycasting.c	\
+	   raycasting/ft_manage_colisions.c	\
+	   raycasting/ft_manage_angles.c	\
+
 
 OBJS := $(SRCS:%.c=%.o)
 
