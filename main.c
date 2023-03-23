@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:37:18 by jperez            #+#    #+#             */
-/*   Updated: 2023/03/23 19:33:34 by jperez           ###   ########.fr       */
+/*   Updated: 2023/03/23 20:12:12 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,6 @@ int	main(int argc, char **argv)
 	ft_print_map(map);
 	ft_find_pos(map, &x, &y);
 	printf("\nx: %d\ny: %d\n-----------------------\n\n",x ,y);
-	ft_raycasting(x * UNIT, y * UNIT, M_PI, map);
+	ft_raycasting(x * UNIT, y * UNIT, M_PI_2 / 2, map);
 	return (0);
 }
