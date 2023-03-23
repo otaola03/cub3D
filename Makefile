@@ -6,7 +6,7 @@
 #    By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 14:10:40 by jperez            #+#    #+#              #
-#    Updated: 2023/03/22 20:10:19 by jperez           ###   ########.fr        #
+#    Updated: 2023/03/23 19:18:40 by jperez           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,7 +72,7 @@ CC = gcc $(F)
 RM = -rm -rf
 
 
-SRCS = pruevas/main.c				\
+SRCS = main.c				\
 	   utils/ft_manage_imgs.c		\
 	   ft_create_minimap.c			\
 	   raycasting/ft_assing_xy_variables.c	\
@@ -80,6 +80,10 @@ SRCS = pruevas/main.c				\
 	   raycasting/ft_raycasting.c	\
 	   raycasting/ft_manage_colisions.c	\
 	   raycasting/ft_manage_angles.c	\
+	   utils/ft_print_map.c				\
+	   utils/ft_save_map.c				\
+	   utils/ft_get_next_line.c			\
+	   utils/ft_args_len.c				\
 
 
 OBJS := $(SRCS:%.c=%.o)
@@ -100,8 +104,9 @@ all: $(NAME)
 #
 $(NAME): $(OBJS)
 	$(MAKE) -C mlx 2> logs
+	$(MAKE) -C libft
 	rm -f logs
-	$(CC) $(CFLAGS) -I mlx/libmlx.a -Imlx -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(OBJS)
+	$(CC) $(CFLAGS) ./libft/libft.a -I mlx/libmlx.a -Imlx -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(OBJS)
 	@echo "\033[0;33m"
 	@echo "$$HEADER"
 

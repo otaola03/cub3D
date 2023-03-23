@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 19:05:07 by jperez            #+#    #+#             */
-/*   Updated: 2023/03/22 20:27:40 by jperez           ###   ########.fr       */
+/*   Updated: 2023/03/23 19:34:53 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,16 @@ double	ft_x_colisions(double player_x, double player_y,  double angle, char **ma
 	double	ray_y;
 	double	ray_x;
 
-	ft_assing_y_variable(player_x, angle, &ray_gap_x ,&ray_x);
+	ft_assing_y_variable(player_y, angle, &ray_gap_y ,&ray_y);
 	ray_x = player_x;
 	ray_gap_x = 0;
+	printf("ray_x: %f\nray_y: %f\n", ray_x, ray_y);
 	while (!ft_check_wall(map, ray_x, ray_y))
 	{
+		printf("ray_gap_x: %f\nray_gap_y: %f\n", ray_gap_x, ray_gap_y);
 		ray_x += ray_gap_x;
 		ray_y += ray_gap_y;
+		printf("----------\n\n");
 	}
 	return (ft_get_distance(player_x, player_y, ray_x, ray_y));
 }

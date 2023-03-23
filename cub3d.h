@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:55:17 by jperez            #+#    #+#             */
-/*   Updated: 2023/03/22 20:09:52 by jperez           ###   ########.fr       */
+/*   Updated: 2023/03/23 19:19:07 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <math.h>
+# include <fcntl.h>
+# include "./libft/libft.h"
 
 typedef struct s_img
 {
@@ -41,6 +43,16 @@ void	ft_edit_img(t_img *img, int width, int height, int color);
 
 /* ------------------------------- ft_create_minimap -------------------------------*/
 void	ft_create_minimap(void *mlx, void *mlx_win, int width, int height);
+
+/* ------------------------------- ft_print_map -------------------------------*/
+void	ft_print_map(char **map);
+
+/* ------------------------------- ft_save_map -------------------------------*/
+char	*ft_get_next_line(int fd);
+char	**ft_save_map(char *map_addr);
+
+/* ------------------------------- ft_save_map -------------------------------*/
+int	ft_args_len(char **args);;
 
 /*===============================================================================*/
 /*									RAYCASTING									 */

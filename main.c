@@ -6,11 +6,11 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:37:18 by jperez            #+#    #+#             */
-/*   Updated: 2023/03/22 20:26:26 by jperez           ###   ########.fr       */
+/*   Updated: 2023/03/23 19:33:34 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../cub3d.h"
+# include "cub3d.h"
 
 # define WINDOW_WIDTH 600
 # define WINDOW_HEIGHT 300
@@ -34,41 +34,41 @@ int	main(void)
 }
 */
 
-char **ft_create_map()
+void	ft_find_pos(char **map, int *x, int *y)
 {
-	int		i;
-	int		j;
-	char	**map;
+	int	i;
+	int	j;
 
-	map = (char **)malloc(sizeof(char *) * 20);
-	i = -1;
-	while(map[++i])
-		map[i] = (char *)malloc(sizeof(char) * 20);
 	i = -1;
 	while (map[++i])
 	{
 		j = -1;
 		while (map[i][++j])
-		{
-			if (i == 0 || i == 19 || j == 0 || j == 19)
-				map[i][j] = 1;
-			else
-				map[i][j] = 0;
-
-		}
+			if (map[i][j] == 'P')
+			{
+				*x = j;
+				*y = i;
+			}
 	}
 }
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	void	*mlx;
 	void	*mlx_win;
 	char	**map;
+	int		x;
+	int		y;
 	//mlx = mlx_init();
 	//mlx_win = mlx_new_window(mlx, 1200, 1200, "Hello world!");
 	//ft_create_minimap(mlx, mlx_win, 1200, 1200);
 	//mlx_loop(mlx);
-	
-	map = ft_create_map();
-	ft_raycasting(300, 400, 2 * M_PI / 3, map);
+	if (argc < 2)
+		return (1);
+	map = ft_save_map(argv[1]);
+	ft_print_map(map);
+	ft_find_pos(map, &x, &y);
+	printf("\nx: %d\ny: %d\n-----------------------\n\n",x ,y);
+	ft_raycasting(x * UNIT, y * UNIT, M_PI, map);
+	return (0);
 }
