@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:55:17 by jperez            #+#    #+#             */
-/*   Updated: 2023/03/23 19:19:07 by jperez           ###   ########.fr       */
+/*   Updated: 2023/03/24 17:49:38 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	ft_assing_y_variable(double player_y, double angle, double *ray_gap_y, doub
 void	ft_assing_x_variable(double player_x, double angle, double *ray_gap_x, double *ray_x);
 
 /* ------------------------------- ft_create_minimap -------------------------------*/
-int	ft_raycasting(double player_x, double player_y, double angle, char **map);
+double	ft_raycasting(double player_x, double player_y, double angle, char **map);
 
 /* ------------------------------- ft_create_minimap -------------------------------*/
 double	ft_get_distance(double player_x, double player_y, double ray_x, double ray_y);
