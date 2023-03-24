@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:55:17 by jperez            #+#    #+#             */
-/*   Updated: 2023/03/24 17:49:38 by jperez           ###   ########.fr       */
+/*   Updated: 2023/03/24 18:38:02 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define CUB3D_H
 
 # define UNIT	64
+# define FOV	M_PI / 3
 
 # include "mlx/mlx.h" 
 # include <stdio.h>
