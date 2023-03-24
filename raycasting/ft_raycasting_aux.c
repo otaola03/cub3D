@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 19:04:14 by jperez            #+#    #+#             */
-/*   Updated: 2023/03/23 20:15:03 by jperez           ###   ########.fr       */
+/*   Updated: 2023/03/23 20:20:40 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 double	ft_get_distance(double player_x, double player_y, double ray_x, double ray_y)
 {
 
+	printf("\n------- SEE DISTAANCE ----------\n\n");
 	printf("player_x: %f\nplayer_y: %f\n\n", player_x, player_y);
 	printf("ray_x: %f\nray_y: %f\n-------------\n", ray_x, ray_y);
 	printf("DISTANCE: %f\n\n", sqrt(pow(ray_x - player_x, 2) + pow(ray_y - player_y, 2)));

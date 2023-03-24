@@ -6,7 +6,7 @@
 #    By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 14:10:40 by jperez            #+#    #+#              #
-#    Updated: 2023/03/23 19:18:40 by jperez           ###   ########.fr        #
+#    Updated: 2023/03/23 20:26:45 by jperez           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,7 @@ O = objs/
 
 NAME = cub3D 
 
-#F = -fsanitize=address -g3
+F = -fsanitize=address -g3
 
 CC = gcc $(F) 
 #CFLAGS = -Wall -Werror -Wextra
