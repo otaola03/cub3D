@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:37:18 by jperez            #+#    #+#             */
-/*   Updated: 2023/03/24 17:42:03 by jperez           ###   ########.fr       */
+/*   Updated: 2023/03/25 13:43:01 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,7 @@ int	main(int argc, char **argv)
 	char	**map;
 	int		x;
 	int		y;
-	//mlx = mlx_init();
-	//mlx_win = mlx_new_window(mlx, 1200, 1200, "Hello world!");
-	//ft_create_minimap(mlx, mlx_win, 1200, 1200);
-	//mlx_loop(mlx);
+
 	if (argc < 2)
 		return (1);
 	map = ft_save_map(argv[1]);
@@ -70,5 +67,10 @@ int	main(int argc, char **argv)
 	ft_find_pos(map, &x, &y);
 	printf("\nx: %d\ny: %d\n-----------------------\n\n",x ,y);
 	ft_raycasting(x * UNIT, y * UNIT, M_PI / 8, map);
+
+	mlx = mlx_init();
+	mlx_win = mlx_new_window(mlx, WINDOW_WIDTH, WINDOW_HEIGHT, "Hello world!");
+	//ft_create_minimap(mlx, mlx_win, 1200, 1200);
+	mlx_loop(mlx);
 	return (0);
 }
