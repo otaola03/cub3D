@@ -6,12 +6,12 @@
 #    By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 14:10:40 by jperez            #+#    #+#              #
-#    Updated: 2023/03/23 20:26:45 by jperez           ###   ########.fr        #
+#    Updated: 2023/03/28 17:48:44 by jperez           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 
-define HEADER
+define CUBE
                                                                                                              
                                                                                                               
                                                                                                               
@@ -57,7 +57,7 @@ define HEADER
                                                                                                               
                                                                                                              
 endef
-export HEADER
+export CUBE
 
 S = srcs/
 O = objs/
@@ -72,7 +72,7 @@ CC = gcc $(F)
 RM = -rm -rf
 
 
-SRCS = main.c				\
+SRC = main.c				\
 	   utils/ft_manage_imgs.c		\
 	   ft_create_minimap.c			\
 	   raycasting/ft_assing_xy_variables.c	\
@@ -84,41 +84,74 @@ SRCS = main.c				\
 	   utils/ft_save_map.c				\
 	   utils/ft_get_next_line.c			\
 	   utils/ft_args_len.c				\
+	   painting/ft_calculate_viewport.c	\
+	   painting/ft_calculate_wall_height.c	\
+	   painting/ft_lightning_gun.c				\
+	   painting/ft_paint_columns.c			\
+	   utils/ft_round_number.c				\
 
 
-OBJS := $(SRCS:%.c=%.o)
+HEADER := cub3D.h
+		
+WHITE = \033[0;37m
+RED = \033[0;31m
+CYAN = \033[0;36m
+GREEN = \033[0;32m
+MAGENTA = \033[0;35m
 
-all: $(NAME)
+OBJ := $(SRC:%.c=%.o)
 
-#$O:
-#	@echo "Creating Objects Folder...."
-#	mkdir $@
-#	@echo "Folder created."
-#
-#$(OBJS): | $O
-#
-#$(OBJS): $O%.o: $S%.c
-##	$(CC) $(CFLAGS) -Imlx_linux -O3 -c $< -o $@
-#	$(CC) $(CFLAGS) -Imlx -O3 -c $< -o $@
-#
-#
-$(NAME): $(OBJS)
+SANI 	:= -fsanitize=address -g3
+
+CC 		:= gcc
+#CFLAGS 	:= -Wall  -Wextra -Werror
+
+RM 		:= rm -rf
+
+MLXF	:= -I mlx/libmlx.a -Imlx -Lmlx -lmlx -framework OpenGL -framework AppKit
+
+all : $(NAME)
+
+$(NAME) : $(OBJ)
+	make -C libft
+	@echo "$(GREEN)libft compiled...$(WHITE)"
 	$(MAKE) -C mlx 2> logs
-	$(MAKE) -C libft
-	rm -f logs
-	$(CC) $(CFLAGS) ./libft/libft.a -I mlx/libmlx.a -Imlx -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME) $(OBJS)
-	@echo "\033[0;33m"
-	@echo "$$HEADER"
+	$(RM) logs
+	@echo "$(GREEN)MLX compiled...$(WHITE)"
+	$(CC) $(SANI) $(CFLAGS) $(MLXF) ./libft/libft.a $(OBJ) -o $(NAME)
+	@echo "$(GREEN)Cub3d compiled...$(WHITE)"
+	@echo "$(CYAN)$$CUBE$(WHITE)"
 
-clean:
-	$(RM) $(OBJS) $O
-	$(RM) mlx/*.o
+%.o: %.c $(HEADER)
+	$(CC) $(CFLAGS) -c $< -o $@
 
-fclean: clean
-	$(RM) $(NAME)
-	$(RM) mlx/libmlx.a
-#	$(RM) mlx/libmlx.dylib
+sani: fclean
+	$(MAKE) CFLAGS='$(CFLAGS) $(SANI)' all
 
-re: fclean all
+flagless:
+	$(MAKE) CFLAGS='' all
 
-.PHONY: fclean clean all
+normi:
+	norminette $(SRC) $(HEADER)
+
+commit:
+	git add $(SRC) $(HEADER) ./Makefile
+	git commit -m "commit general"
+	git push
+
+test: all
+	./Cub3d test.cub
+	
+clean : 
+		$(RM) $(OBJ)
+		make clean -C libft
+		make clean -C mlx
+		@echo "$(RED)clean done...$(WHITE)"
+
+fclean : clean
+		$(RM) $(NAME)
+		@echo "$(RED)fclean done...$(WHITE)"
+
+re : fclean all
+
+.PHONY : all clean fclean re sani flagless normi commit test

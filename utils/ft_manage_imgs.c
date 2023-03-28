@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 18:41:56 by jperez            #+#    #+#             */
-/*   Updated: 2023/03/20 13:27:54 by jperez           ###   ########.fr       */
+/*   Updated: 2023/03/28 17:12:48 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,27 @@ t_img *ft_create_img(void *mlx, int width, int height)
 	return (img);
 }
 
-void	ft_edit_img(t_img *img, int width, int height, int color)
+void	ft_edit_img(t_img *img, int floor, int sky, int wall_height)
 {
 	int	x;
 	int	y;
+	int	floor_px;
 
+	floor_px = (WIN_HEIGHT - wall_height) / 2;
+	printf("WIN_HEIGHT: %d\n", WIN_HEIGHT);
+	printf("wall_height: %d\n", wall_height);
+	printf("(WIN_HEIGHT - wall_height) / 2: %d\n", floor_px);
 	y = -1;
-	while (++y < height)
+	while (++y < floor_px)
+		my_mlx_pixel_put(img, 0, y, floor);
+	printf("y: %d\n", y);
+	while (y < floor_px + wall_height)
 	{
-		x = -1;
-		while (++x < width)
-		{
-			if ((0 <= x && x < WIDTH) || (0 <= y && y < WIDTH) || (width - WIDTH < x && x < width) || (height- WIDTH < y && y < height))
-				my_mlx_pixel_put(img, x, y, 0xC5FF00);
-			else
-				my_mlx_pixel_put(img, x, y, color);
-		}
+		//printf("->y: %d\n", y);
+		my_mlx_pixel_put(img, 0, y++, 0x29C9DF);
 	}
+	printf("y: %d\n", y);
+	while (y < WIN_HEIGHT)
+		my_mlx_pixel_put(img, 0, y++, sky);
+	printf("y: %d\n", y);
 }

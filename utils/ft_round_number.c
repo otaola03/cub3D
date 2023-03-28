@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calculate_wall_height.c                         :+:      :+:    :+:   */
+/*   ft_round_number.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/25 14:07:37 by jperez            #+#    #+#             */
-/*   Updated: 2023/03/28 17:29:43 by jperez           ###   ########.fr       */
+/*   Created: 2023/03/27 19:32:00 by jperez            #+#    #+#             */
+/*   Updated: 2023/03/27 20:12:02 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../cub3d.h"
 
-double	ft_calculate_wall_height(double ray_distance)
+int	ft_round_number(double number)
 {
-	printf("ray_distance: %f\n", ray_distance);
-	printf("SCREEN_DISTANCE: %f\n", SCREEN_DISTANCE);
-	printf("UNIT / ray_distance * SCREEN_DISTANCE: %f\n\n", (UNIT / ray_distance) * SCREEN_DISTANCE);
-	return((UNIT / ray_distance) * SCREEN_DISTANCE);
+	int	output;
+	output = floor(number);
+	if (output % 2 != 0)
+		number--;
+	return (output);
 }

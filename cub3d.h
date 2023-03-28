@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:55:17 by jperez            #+#    #+#             */
-/*   Updated: 2023/03/24 18:38:02 by jperez           ###   ########.fr       */
+/*   Updated: 2023/03/28 17:49:17 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,12 @@
 
 # define CUB3D_H
 
-# define UNIT	64
-# define FOV	M_PI / 3
+# define WIN_WIDTH			600
+# define WIN_HEIGHT			300
+# define UNIT				64
+# define FOV				M_PI / 3
+# define SCREEN_DISTANCE	(WIN_WIDTH / 2) / tan(FOV / 2)
+# define ANGLE_GAP			FOV / WIN_WIDTH
 
 # include "mlx/mlx.h" 
 # include <stdio.h>
@@ -25,6 +29,7 @@
 # include <fcntl.h>
 # include "./libft/libft.h"
 
+
 typedef struct s_img
 {
 	void	*mlx_img;
@@ -33,6 +38,15 @@ typedef struct s_img
 	int		line_len;
 	int		endian;
 }	t_img;
+
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*mlx_win;
+	char	**map;
+	double	player_x;
+	double	player_y;
+}	t_mlx;
 
 /*===============================================================================*/
 /*									UTILS										 */
@@ -53,7 +67,10 @@ char	*ft_get_next_line(int fd);
 char	**ft_save_map(char *map_addr);
 
 /* ------------------------------- ft_save_map -------------------------------*/
-int	ft_args_len(char **args);;
+int	ft_args_len(char **args);
+
+/* ------------------------------- ft_save_map -------------------------------*/
+int	ft_round_number(double number);
 
 /*===============================================================================*/
 /*									RAYCASTING									 */
@@ -79,5 +96,14 @@ int	ft_angle_in_range(double angle, double start, double end);
 
 /* ------------------------------- ft_create_minimap -------------------------------*/
 double	ft_normalize_angle(double angle);
+
+/*===============================================================================*/
+/*									PAINTING									 */
+/*===============================================================================*/
+
+void	ft_calculate_viewport(double angle, double *min_angle, double *max_angle);
+double	ft_calculate_wall_height(double ray_distance);
+void	ft_paint_column(t_mlx *mlx, int x, int wall_height);
+void	ft_lightning_gun(char **map, double angle, t_mlx *mlx);
 
 #endif 

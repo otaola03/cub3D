@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calculate_wall_height.c                         :+:      :+:    :+:   */
+/*   ft_paint_columns.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/25 14:07:37 by jperez            #+#    #+#             */
-/*   Updated: 2023/03/28 17:29:43 by jperez           ###   ########.fr       */
+/*   Created: 2023/03/27 19:20:55 by jperez            #+#    #+#             */
+/*   Updated: 2023/03/28 16:53:24 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../cub3d.h"
 
-double	ft_calculate_wall_height(double ray_distance)
+void	ft_paint_column(t_mlx *mlx, int x, int wall_height)
 {
-	printf("ray_distance: %f\n", ray_distance);
-	printf("SCREEN_DISTANCE: %f\n", SCREEN_DISTANCE);
-	printf("UNIT / ray_distance * SCREEN_DISTANCE: %f\n\n", (UNIT / ray_distance) * SCREEN_DISTANCE);
-	return((UNIT / ray_distance) * SCREEN_DISTANCE);
+	t_img *column;
+
+	column = ft_create_img(mlx->mlx, 1, WIN_HEIGHT);
+	printf("------->WAL_HEIGHT: %d\n", wall_height);
+	ft_edit_img(column, 0x000000, 0xFF0000, wall_height);
+	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, column->mlx_img, x, 0);
+	//free(column);
 }
