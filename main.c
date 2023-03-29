@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:37:18 by jperez            #+#    #+#             */
-/*   Updated: 2023/03/28 18:15:10 by jperez           ###   ########.fr       */
+/*   Updated: 2023/03/29 18:16:53 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,18 @@ int	main(int argc, char **argv)
 	ft_find_pos(mlx->map, &mlx->player_x, &mlx->player_y);
 	printf("\nx: %f\ny: %f\n-----------------------\n\n", mlx->player_x ,mlx->player_y);
 
+	double min_angle, max_angle, angle;
+	angle = M_PI / 8;
+	ft_calculate_viewport(angle, &min_angle, &max_angle);
+	printf("FOV / 2: %f\n", FOV / 2);
+	printf("Angle: %f\n", angle);
+	printf("min: %f\nmax: %f\n", min_angle, max_angle);
+	printf("2PI - FOV / 2: %f\n", 2 * M_PI - FOV / 2);
+	/*
 	mlx->mlx = mlx_init();
 	mlx->mlx_win = mlx_new_window(mlx->mlx, WIN_WIDTH, WIN_HEIGHT, "Hello world!");
 	ft_lightning_gun(mlx->map, 0, mlx);
 	mlx_loop(mlx->mlx);
+	*/
 	return (0);
 }

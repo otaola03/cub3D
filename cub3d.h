@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:55:17 by jperez            #+#    #+#             */
-/*   Updated: 2023/03/28 17:49:17 by jperez           ###   ########.fr       */
+/*   Updated: 2023/03/28 20:00:04 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # define WIN_HEIGHT			300
 # define UNIT				64
 # define FOV				M_PI / 3
+# define FOV_2				FOV / 2
 # define SCREEN_DISTANCE	(WIN_WIDTH / 2) / tan(FOV / 2)
 # define ANGLE_GAP			FOV / WIN_WIDTH
 

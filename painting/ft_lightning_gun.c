@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 13:47:24 by jperez            #+#    #+#             */
-/*   Updated: 2023/03/28 19:35:55 by jperez           ###   ########.fr       */
+/*   Updated: 2023/03/28 20:10:31 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_lightning_gun(char **map, double angle, t_mlx *mlx)
 	printf("min: %f\nmax: %f\n", min_angle, max_angle);
 	printf("2PI - FOV / 2: %f\n", 2 * M_PI - FOV / 2);
 	/*
-	while (x < WIN_HEIGHT)
+	while (min_angle < max_angle)
 	{
 		wall_height = ft_calculate_wall_height(ft_raycasting(\
 			mlx->player_x * UNIT, mlx->player_y * UNIT, min_angle, mlx->map));
