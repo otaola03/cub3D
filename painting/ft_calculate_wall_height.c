@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 14:07:37 by jperez            #+#    #+#             */
-/*   Updated: 2023/03/28 17:29:43 by jperez           ###   ########.fr       */
+/*   Updated: 2023/03/29 18:31:43 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 double	ft_calculate_wall_height(double ray_distance)
 {
+	printf("===================WALL_HEIGHT=================\n");
 	printf("ray_distance: %f\n", ray_distance);
 	printf("SCREEN_DISTANCE: %f\n", SCREEN_DISTANCE);
 	printf("UNIT / ray_distance * SCREEN_DISTANCE: %f\n\n", (UNIT / ray_distance) * SCREEN_DISTANCE);

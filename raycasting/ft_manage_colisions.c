@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 19:05:07 by jperez            #+#    #+#             */
-/*   Updated: 2023/03/24 17:35:35 by jperez           ###   ########.fr       */
+/*   Updated: 2023/03/29 18:32:58 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ double	ft_horizontal_colisions(double player_x, double player_y,  double angle, 
 	double	ray_y;
 	double	ray_x;
 
-	printf("======= HORIZOTAL ========\n");
+	printf("============ HORIZOTAL ===========\n");
 	ft_assing_y_variable(player_y, angle, &ray_gap_y, &ray_y);
 	if (M_PI_2 < angle && angle < 3 * M_PI_2)
 		ray_gap_x = 0 - UNIT / tan(ft_normalize_angle(angle));
@@ -44,7 +44,7 @@ double	ft_vertical_colisions(double player_x, double player_y,  double angle, ch
 	double	ray_y;
 	double	ray_x;
 
-	printf("======= VERTICAL ========\n");
+	printf("============= VERTICAL =============\n");
 	ft_assing_x_variable(player_x, angle, &ray_gap_x ,&ray_x);
 	if (0 < angle && angle < M_PI)
 		ray_gap_y = 0 - UNIT * tan(ft_normalize_angle(angle));
