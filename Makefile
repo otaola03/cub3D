@@ -6,7 +6,7 @@
 #    By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 14:10:40 by jperez            #+#    #+#              #
-#    Updated: 2023/03/28 17:48:44 by jperez           ###   ########.fr        #
+#    Updated: 2023/03/31 17:29:41 by jperez           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -89,6 +89,8 @@ SRC = main.c				\
 	   painting/ft_lightning_gun.c				\
 	   painting/ft_paint_columns.c			\
 	   utils/ft_round_number.c				\
+	   raycasting/ft_vertical_colisions.c	\
+	   raycasting/ft_horizontal_colisions.c	\
 
 
 HEADER := cub3D.h
@@ -103,7 +105,7 @@ OBJ := $(SRC:%.c=%.o)
 
 SANI 	:= -fsanitize=address -g3
 
-CC 		:= gcc
+CC 		:= gcc -march=native
 #CFLAGS 	:= -Wall  -Wextra -Werror
 
 RM 		:= rm -rf

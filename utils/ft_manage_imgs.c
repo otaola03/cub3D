@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 18:41:56 by jperez            #+#    #+#             */
-/*   Updated: 2023/03/29 18:58:47 by jperez           ###   ########.fr       */
+/*   Updated: 2023/03/30 20:11:55 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,20 +39,14 @@ void	ft_edit_img(t_img *img, int floor, int sky, int wall_height)
 	int	floor_px;
 
 	floor_px = (WIN_HEIGHT - wall_height) / 2;
-	printf("WIN_HEIGHT: %d\n", WIN_HEIGHT);
-	printf("wall_height: %d\n", wall_height);
-	printf("(WIN_HEIGHT - wall_height) / 2: %d\n", floor_px);
 	y = -1;
 	while (++y < floor_px)
 		my_mlx_pixel_put(img, 0, y, floor);
-	printf("y: %d\n", y);
 	while (y < floor_px + wall_height)
 	{
 		//printf("->y: %d\n", y);
 		my_mlx_pixel_put(img, 0, y++, 0x607CEF);
 	}
-	printf("y: %d\n", y);
 	while (y < WIN_HEIGHT)
 		my_mlx_pixel_put(img, 0, y++, sky);
-	printf("y: %d\n", y);
 }

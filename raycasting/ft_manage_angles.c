@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:15:26 by jperez            #+#    #+#             */
-/*   Updated: 2023/03/24 17:29:20 by jperez           ###   ########.fr       */
+/*   Updated: 2023/03/30 19:32:03 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 double	ft_normalize_angle(double angle)
 {
 	if (0 < angle && angle < M_PI_2)
-		return (angle);
+		return (printf("Normalize_angle: %f\n", angle), angle);
 	else if (M_PI_2 < angle && angle < M_PI)
 		return (M_PI - angle);
 	else if (M_PI < angle && angle < 3 * M_PI_2)
