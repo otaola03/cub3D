@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 19:04:14 by jperez            #+#    #+#             */
-/*   Updated: 2023/04/02 17:22:41 by jperez           ###   ########.fr       */
+/*   Updated: 2023/03/31 17:43:10 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,17 @@ int	ft_check_wall(char **map, double ray_x, double ray_y)
 	y = (int)floor(ray_y / UNIT);
 	printf("X: %d\n", x);
 	printf("Y: %d\n", y);
-	if (!((0 <= x && x < ft_strlen(map[0])) && (0 <= y && y < ft_args_len(map))))
+	//CAmbialo pa que sea variable las formas maximas
+	if (!((0 < ray_x && ray_x < ft_strlen(map[0]) * UNIT) && (0 < ray_y && ray_y < ft_args_len(map) * UNIT)))
 		return (1);
 	if ('0' < map[y][x] && map[y][x] <= '9')
+		return (1);
+	return (0);
+}
+
+int	ft_angle_in_range(double angle, double start, double end)
+{
+	if (start < angle && angle < end)
 		return (1);
 	return (0);
 }

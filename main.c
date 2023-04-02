@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:37:18 by jperez            #+#    #+#             */
-/*   Updated: 2023/03/30 17:51:10 by jperez           ###   ########.fr       */
+/*   Updated: 2023/04/02 17:34:24 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	main(int argc, char **argv)
 	ft_find_pos(mlx->map, &mlx->player_x, &mlx->player_y);
 	printf("\nx: %f\ny: %f\n-----------------------\n\n", mlx->player_x ,mlx->player_y);
 
-	//ft_lightning_gun(mlx->map, 0, mlx);
+	//ft_lightning_gun(mlx->map, M_PI_2, mlx);
 	mlx->mlx = mlx_init();
 	mlx->mlx_win = mlx_new_window(mlx->mlx, WIN_WIDTH, WIN_HEIGHT, "Hello world!");
 	ft_lightning_gun(mlx->map, 0, mlx);

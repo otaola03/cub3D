@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:55:17 by jperez            #+#    #+#             */
-/*   Updated: 2023/03/30 17:49:35 by jperez           ###   ########.fr       */
+/*   Updated: 2023/04/01 19:31:20 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # define FOV_2				FOV / 2
 # define SCREEN_DISTANCE	(WIN_WIDTH / 2) / tan(FOV / 2)
 # define ANGLE_GAP			FOV / WIN_WIDTH
+
+# define M_PI_3_2			3 * M_PI_2
 
 # include "mlx/mlx.h" 
 # include <stdio.h>

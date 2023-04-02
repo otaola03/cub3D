@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:15:26 by jperez            #+#    #+#             */
-/*   Updated: 2023/04/01 19:06:52 by jperez           ###   ########.fr       */
+/*   Updated: 2023/03/30 19:32:03 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,4 @@ double	ft_get_quadrant(double angle)
 	else if (3 * M_PI_2 < angle && angle < 2 * M_PI)
 		return (4);
 	return (-1);
-}
-
-int	ft_angle_in_range(double angle, double start, double end)
-{
-	if (start <= angle && angle <= end)
-		return (1);
-	return (0);
 }

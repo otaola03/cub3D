@@ -6,13 +6,13 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 19:53:53 by jperez            #+#    #+#             */
-/*   Updated: 2023/04/02 17:12:35 by jperez           ###   ########.fr       */
+/*   Updated: 2023/03/30 20:15:03 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../cub3d.h"
 
-static double	ft_return_min(double horizontal_colision, double vertical_colision)
+static double	ft_return_min(double vertical_colision, double horizontal_colision)
 {
 	if (vertical_colision < horizontal_colision)
 		return (vertical_colision);
@@ -22,18 +22,12 @@ static double	ft_return_min(double horizontal_colision, double vertical_colision
 
 double	ft_raycasting(double player_x, double player_y, double angle, char **map)
 {
-	double	horizontal_colision;
-	double	vertical_colision;
-
-
-	printf("-------Horizontal-Colisions-------\n");
-	horizontal_colision = ft_horizontal_colisions(player_x, player_y, angle, map);
-	printf("\n");
-
-	printf("-------Vertical-Colisions-------\n");
-	vertical_colision = ft_vertical_colisions(player_x, player_y, angle, map);
-
-	printf("Horizontal_colision: %f\n", horizontal_colision);
-	printf("Vertical_colision: %f\n", vertical_colision);
-	return (ft_return_min(horizontal_colision, vertical_colision));
+	if (angle == 0 || angle == 2 * M_PI || angle == M_PI)
+		return (ft_y_colisions(player_x, player_y, angle, map));
+	else if (angle == M_PI_2 || angle == 3 * M_PI_2)
+		return (ft_x_colisions(player_x, player_y, angle, map));
+	else
+		return (ft_return_min(ft_vertical_colisions(player_x, player_y, angle, map), \
+			ft_horizontal_colisions(player_x, player_y, angle, map)));
+	return (-1);
 }
