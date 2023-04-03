@@ -6,21 +6,28 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:15:26 by jperez            #+#    #+#             */
-/*   Updated: 2023/04/02 18:38:00 by jperez           ###   ########.fr       */
+/*   Updated: 2023/04/03 18:25:28 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../cub3d.h"
 
+int	ft_angle_in_range(double start, double end, double angle)
+{
+	if (start <= angle && angle <= end)
+		return (1);
+	return (0);
+}
+
 double	ft_normalize_angle(double angle)
 {
-	if (0 < angle && angle < M_PI_2)
+	if (ft_angle_in_range(0, M_PI_2, angle))
 		return (angle);
-	else if (M_PI_2 < angle && angle < M_PI)
+	if (ft_angle_in_range(M_PI_2, M_PI, angle))
 		return (M_PI - angle);
-	else if (M_PI < angle && angle < 3 * M_PI_2)
+	if (ft_angle_in_range(M_PI, M_PI_3_2, angle))
 		return (3 * M_PI_2 - angle);
-	else if (3 * M_PI_2 < angle && angle < 2 * M_PI)
+	if (ft_angle_in_range(M_PI_2, 2 * M_PI, angle))
 		return (2 * M_PI - angle);
 	return (-1);
 }
@@ -36,11 +43,4 @@ double	ft_get_quadrant(double angle)
 	else if (3 * M_PI_2 < angle && angle < 2 * M_PI)
 		return (4);
 	return (-1);
-}
-
-int	ft_angle_in_range(double start, double end, double angle)
-{
-	if (start <= angle && angle <= end)
-		return (1);
-	return (0);
 }
