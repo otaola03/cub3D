@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 17:06:04 by jperez            #+#    #+#             */
-/*   Updated: 2023/04/02 17:33:04 by jperez           ###   ########.fr       */
+/*   Updated: 2023/04/03 17:15:40 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,12 @@ static void	ft_find_gap(double *ray_gap_x, double *ray_gap_y, double angle)
 		*ray_gap_y = 0 - UNIT;
 	else
 		*ray_gap_y = UNIT;
-	*ray_gap_x = *ray_gap_y / tan(ft_normalize_angle(angle));
+	//*ray_gap_x = *ray_gap_y / tan(ft_normalize_angle(angle));
+	
+	if (ft_angle_in_range(M_PI_2, M_PI_3_2, angle))
+		*ray_gap_x = 0 - fabs(*ray_gap_y) / tan(ft_normalize_angle(angle));
+	else
+		*ray_gap_x = fabs(*ray_gap_y) / tan(ft_normalize_angle(angle));
 }
 
 double	ft_horizontal_colisions(double player_x, double player_y,  double angle, char **map)

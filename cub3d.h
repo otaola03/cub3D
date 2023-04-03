@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:55:17 by jperez            #+#    #+#             */
-/*   Updated: 2023/04/01 19:31:20 by jperez           ###   ########.fr       */
+/*   Updated: 2023/04/03 17:17:09 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 # define CUB3D_H
 
-# define WIN_WIDTH			600
+# define WIN_WIDTH			1200
 # define WIN_HEIGHT			600
 # define UNIT				64
 # define FOV				M_PI / 3
@@ -95,7 +95,7 @@ double	ft_raycasting(double player_x, double player_y, double angle, char **map)
 /* ------------------------------- ft_create_minimap -------------------------------*/
 double	ft_get_distance(double player_x, double player_y, double ray_x, double ray_y);
 int	ft_check_wall(char **map, double ray_x, double ray_y);
-int	ft_angle_in_range(double angle, double start, double end);
+int	ft_angle_in_range(double start, double end, double angle);
 
 /* ------------------------------- ft_create_minimap -------------------------------*/
 double	ft_normalize_angle(double angle);

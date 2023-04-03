@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 13:47:24 by jperez            #+#    #+#             */
-/*   Updated: 2023/04/02 17:33:50 by jperez           ###   ########.fr       */
+/*   Updated: 2023/04/03 16:59:59 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ void	ft_lightning_gun(char **map, double angle, t_mlx *mlx)
 		printf("		RAY: %d					 \n", x);
 		printf("==============================================\n");
 		printf("Angle: %f\n", max_angle);
-		printf("player_x: %f\n", mlx->player_x * UNIT);
-		printf("player_y: %f\n\n", mlx->player_y * UNIT);
+		printf("Player_x: %f\n", mlx->player_x);
+		printf("Player_y: %f\n\n", mlx->player_y);
 
 
 
 		wall_height = ft_calculate_wall_height(ft_raycasting(\
-			mlx->player_x * UNIT, mlx->player_y * UNIT, max_angle, mlx->map));
+			mlx->player_x, mlx->player_y, max_angle, mlx->map));
 		printf("Wall_height: %f\n", wall_height);
 
 
