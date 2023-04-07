@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:15:26 by jperez            #+#    #+#             */
-/*   Updated: 2023/04/07 18:45:15 by jperez           ###   ########.fr       */
+/*   Updated: 2023/04/03 18:25:28 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ double	ft_normalize_angle(double angle)
 	return (-1);
 }
 
-int	ft_get_quadrant(double angle)
+double	ft_get_quadrant(double angle)
 {
 	if (0 < angle && angle < M_PI_2)
 		return (1);

@@ -6,13 +6,13 @@
 #    By: xmatute- <xmatute-@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/23 16:17:58 by xmatute-          #+#    #+#              #
-#    Updated: 2023/02/21 16:05:51 by jperez           ###   ########.fr        #
+#    Updated: 2023/04/07 18:28:48 by jperez           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-.SILENT:
+#.SILENT:
 
 SRC =	ft_isalpha.c ft_toupper.c \
 		ft_isdigit.c ft_tolower.c \
@@ -57,6 +57,9 @@ BONUS =	ft_lstnew_bonus.c         \
 BONUS_OBJS = $(BONUS:%.c=%.o)
 
 FLAGS = -Wall -Werror -Wextra
+
+.c.o: $(SRC)
+	gcc $(FLAGS) -c $^ -o $@
 
 all: $(NAME)
 

@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:37:18 by jperez            #+#    #+#             */
-/*   Updated: 2023/04/03 17:02:34 by jperez           ###   ########.fr       */
+/*   Updated: 2023/04/07 18:46:41 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,24 @@ int	main(int argc, char **argv)
 		return (1);
 	mlx= (t_mlx *)malloc(sizeof(t_mlx));
 	mlx->map = ft_save_map(argv[1]);
+	mlx->angle = 0;
+
 	ft_print_map(mlx->map);
 	ft_find_pos(mlx->map, &mlx->player_x, &mlx->player_y);
 	printf("\nx: %f\ny: %f\n-----------------------\n\n", mlx->player_x ,mlx->player_y);
 
-	//ft_lightning_gun(mlx->map, 0, mlx);
 	mlx->mlx = mlx_init();
 	mlx->mlx_win = mlx_new_window(mlx->mlx, WIN_WIDTH, WIN_HEIGHT, "Hello world!");
-	ft_lightning_gun(mlx->map, 0, mlx);
+	mlx->floor = 0x000000;
+	mlx->sky = 0xFF0000;
+
+	ft_lightning_gun(mlx->map, mlx->angle, mlx);
+
+
+
+	mlx_hook(mlx->mlx_win, 2, (1L << 1), key_hook, mlx);
+	//mlx_loop_hook(mlx->mlx, ft_main_loop, mlx);
+	//ft_lightning_gun(mlx->map, mlx->angle, mlx);
 	mlx_loop(mlx->mlx);
 	return (0);
 }

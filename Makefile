@@ -6,7 +6,7 @@
 #    By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 14:10:40 by jperez            #+#    #+#              #
-#    Updated: 2023/03/31 17:29:41 by jperez           ###   ########.fr        #
+#    Updated: 2023/04/07 18:27:11 by jperez           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,11 +75,11 @@ RM = -rm -rf
 SRC = main.c				\
 	   utils/ft_manage_imgs.c		\
 	   ft_create_minimap.c			\
+	   raycasting/ft_manage_angles.c	\
 	   raycasting/ft_assing_xy_variables.c	\
 	   raycasting/ft_raycasting_aux.c	\
 	   raycasting/ft_raycasting.c	\
 	   raycasting/ft_manage_colisions.c	\
-	   raycasting/ft_manage_angles.c	\
 	   utils/ft_print_map.c				\
 	   utils/ft_save_map.c				\
 	   utils/ft_get_next_line.c			\
@@ -91,7 +91,7 @@ SRC = main.c				\
 	   utils/ft_round_number.c				\
 	   raycasting/ft_vertical_colisions.c	\
 	   raycasting/ft_horizontal_colisions.c	\
-
+	   hooks/ft_key_hooks.c					\
 
 HEADER := cub3D.h
 		
@@ -105,8 +105,10 @@ OBJ := $(SRC:%.c=%.o)
 
 SANI 	:= -fsanitize=address -g3
 
-CC 		:= gcc -march=native
-#CFLAGS 	:= -Wall  -Wextra -Werror
+CC 		:= gcc -O2 -march=native 
+#CFLAGS 	:= -Wall -Wextra -Werror
+
+CFLAGS	:= $(CFLAGS) $(EFLAGS)
 
 RM 		:= rm -rf
 
@@ -117,21 +119,23 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 	make -C libft
 	@echo "$(GREEN)libft compiled...$(WHITE)"
-	$(MAKE) -C mlx 2> logs
-	$(RM) logs
+	$(MAKE) -C mlx 2> /dev/null
 	@echo "$(GREEN)MLX compiled...$(WHITE)"
-	$(CC) $(SANI) $(CFLAGS) $(MLXF) ./libft/libft.a $(OBJ) -o $(NAME)
+	$(CC) $(CFLAGS) $(MLXF) ./libft/libft.a $(OBJ) -o $(NAME)
 	@echo "$(GREEN)Cub3d compiled...$(WHITE)"
 	@echo "$(CYAN)$$CUBE$(WHITE)"
 
 %.o: %.c $(HEADER)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-sani: fclean
-	$(MAKE) CFLAGS='$(CFLAGS) $(SANI)' all
+sani:
+	$(MAKE) EFLAGS='$(SANI)' all
 
 flagless:
 	$(MAKE) CFLAGS='' all
+
+debug:
+	$(MAKE) EFLAGS='-DDEBUG=0' all
 
 normi:
 	norminette $(SRC) $(HEADER)
@@ -143,7 +147,7 @@ commit:
 
 test: all
 	./Cub3d test.cub
-	
+
 clean : 
 		$(RM) $(OBJ)
 		make clean -C libft
@@ -155,5 +159,3 @@ fclean : clean
 		@echo "$(RED)fclean done...$(WHITE)"
 
 re : fclean all
-
-.PHONY : all clean fclean re sani flagless normi commit test

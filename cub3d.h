@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:55:17 by jperez            #+#    #+#             */
-/*   Updated: 2023/04/03 17:17:09 by jperez           ###   ########.fr       */
+/*   Updated: 2023/04/07 18:24:50 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # define WIN_WIDTH			1200
 # define WIN_HEIGHT			600
 # define UNIT				64
+# define MOVE_SPEED			25
+# define ANGLE_SPEED		M_PI / 10
 # define FOV				M_PI / 3
 # define FOV_2				FOV / 2
 # define SCREEN_DISTANCE	(WIN_WIDTH / 2) / tan(FOV / 2)
@@ -32,6 +34,15 @@
 # include <fcntl.h>
 # include "./libft/libft.h"
 
+enum{
+    A_KEY = 0,
+    S_KEY = 1,
+    D_KEY = 2,
+    W_KEY = 13,
+    LEFT_KEY = 123,
+    RIGHT_KEY = 124,
+    ESC_KEY = 153,
+};
 
 typedef struct s_img
 {
@@ -49,15 +60,21 @@ typedef struct s_mlx
 	char	**map;
 	double	player_x;
 	double	player_y;
+	double	angle;
+	int		sky;
+	int		floor;
+	t_img	*background;
 }	t_mlx;
 
+int	ft_get_quadrant(double angle);
 /*===============================================================================*/
 /*									UTILS										 */
 /*===============================================================================*/
 
 /* ------------------------------- ft_manage_imgs -------------------------------*/
 t_img *ft_create_img(void *mlx, int width, int height);
-void	ft_edit_img(t_img *img, int width, int height, int color);
+void	ft_edit_img(t_img *img, t_mlx *mlx, int x, int wall_height);
+void	ft_create_background(t_img *img, int floor, int sky);
 
 /* ------------------------------- ft_create_minimap -------------------------------*/
 void	ft_create_minimap(void *mlx, void *mlx_win, int width, int height);
@@ -90,7 +107,12 @@ void	ft_assing_y_variable(double player_y, double angle, double *ray_gap_y, doub
 void	ft_assing_x_variable(double player_x, double angle, double *ray_gap_x, double *ray_x);
 
 /* ------------------------------- ft_create_minimap -------------------------------*/
+double	ft_return_min(double horizontal_colision, double vertical_colision);
 double	ft_raycasting(double player_x, double player_y, double angle, char **map);
+double	ft_first_quadrant(double player_x, double player_y, double angle, char **map);
+double	ft_second_quadrant(double player_x, double player_y, double angle, char **map);
+double	ft_third_quadrant(double player_x, double player_y, double angle, char **map);
+double	ft_third_quadrant(double player_x, double player_y, double angle, char **map);
 
 /* ------------------------------- ft_create_minimap -------------------------------*/
 double	ft_get_distance(double player_x, double player_y, double ray_x, double ray_y);
@@ -108,5 +130,12 @@ void	ft_calculate_viewport(double angle, double *min_angle, double *max_angle);
 double	ft_calculate_wall_height(double ray_distance);
 void	ft_paint_column(t_mlx *mlx, int x, int wall_height);
 void	ft_lightning_gun(char **map, double angle, t_mlx *mlx);
+
+/*===============================================================================*/
+/*									PAINTING									 */
+/*===============================================================================*/
+
+int	key_hook(int keycode, t_mlx *mlx);
+int	ft_main_loop(t_mlx *mlx);
 
 #endif 

@@ -6,13 +6,13 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 19:53:53 by jperez            #+#    #+#             */
-/*   Updated: 2023/04/07 18:28:20 by jperez           ###   ########.fr       */
+/*   Updated: 2023/04/06 17:12:42 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../cub3d.h"
 
-double	ft_return_min(double horizontal_colision, double vertical_colision)
+static double	ft_return_min(double horizontal_colision, double vertical_colision)
 {
 	if (vertical_colision < horizontal_colision)
 		return (vertical_colision);
