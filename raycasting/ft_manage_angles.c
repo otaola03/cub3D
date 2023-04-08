@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:15:26 by jperez            #+#    #+#             */
-/*   Updated: 2023/04/08 13:14:05 by jperez           ###   ########.fr       */
+/*   Updated: 2023/04/08 13:16:36 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,17 @@ double	ft_normalize_angle(double angle)
 double	ft_normalize_angle(double angle)
 {
     // Convertir a valor positivo
-    angle = fmod(fabs(angle), 2*M_PI);
+    //angle = fmod(fabs(angle), 2*M_PI);
     
     // Reducir al primer cuadrante
     if (angle<= M_PI/2) {
-        return angle;
+        return (angle);
     } else if (angle <= M_PI) {
-        return M_PI - angle;
+        return (M_PI - angle);
     } else if (angle <= 3*M_PI/2) {
-        return angle - M_PI;
+        return (angle - M_PI);
     } else {
-        return 2*M_PI - angle;
+        return (2*M_PI - angle);
     }
 }
 
