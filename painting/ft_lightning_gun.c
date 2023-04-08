@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 13:47:24 by jperez            #+#    #+#             */
-/*   Updated: 2023/04/07 18:27:25 by jperez           ###   ########.fr       */
+/*   Updated: 2023/04/08 13:07:50 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	ft_lightning_gun(char **map, double angle, t_mlx *mlx)
 		printf("		RAY: %d					 \n", x);
 		printf("==============================================\n");
 		printf("Angle: %f\n", max_angle);
+		printf("Normalize-angle: %f\n", ft_normalize_angle(max_angle));
 		printf("Player_x: %f\n", mlx->player_x);
 		printf("Player_y: %f\n\n", mlx->player_y);
 		#endif

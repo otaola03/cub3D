@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:15:26 by jperez            #+#    #+#             */
-/*   Updated: 2023/04/07 18:45:15 by jperez           ###   ########.fr       */
+/*   Updated: 2023/04/08 13:14:05 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,17 +19,35 @@ int	ft_angle_in_range(double start, double end, double angle)
 	return (0);
 }
 
+/*
 double	ft_normalize_angle(double angle)
 {
 	if (ft_angle_in_range(0, M_PI_2, angle))
 		return (angle);
 	if (ft_angle_in_range(M_PI_2, M_PI, angle))
-		return (M_PI - angle);
+		return (angle - M_PI_2);
 	if (ft_angle_in_range(M_PI, M_PI_3_2, angle))
-		return (3 * M_PI_2 - angle);
-	if (ft_angle_in_range(M_PI_2, 2 * M_PI, angle))
-		return (2 * M_PI - angle);
+		return (angle - M_PI);
+	if (ft_angle_in_range(M_PI_3_2, 2 * M_PI, angle))
+		return (angle - M_PI_3_2);
 	return (-1);
+}
+*/
+double	ft_normalize_angle(double angle)
+{
+    // Convertir a valor positivo
+    angle = fmod(fabs(angle), 2*M_PI);
+    
+    // Reducir al primer cuadrante
+    if (angle<= M_PI/2) {
+        return angle;
+    } else if (angle <= M_PI) {
+        return M_PI - angle;
+    } else if (angle <= 3*M_PI/2) {
+        return angle - M_PI;
+    } else {
+        return 2*M_PI - angle;
+    }
 }
 
 int	ft_get_quadrant(double angle)
