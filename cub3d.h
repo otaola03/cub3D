@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:55:17 by jperez            #+#    #+#             */
-/*   Updated: 2023/04/07 18:24:50 by jperez           ###   ########.fr       */
+/*   Updated: 2023/04/11 19:45:27 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct s_mlx
 	double	angle;
 	int		sky;
 	int		floor;
-	t_img	*background;
+	t_img	*wall;
 }	t_mlx;
 
 int	ft_get_quadrant(double angle);
@@ -75,6 +75,7 @@ int	ft_get_quadrant(double angle);
 t_img *ft_create_img(void *mlx, int width, int height);
 void	ft_edit_img(t_img *img, t_mlx *mlx, int x, int wall_height);
 void	ft_create_background(t_img *img, int floor, int sky);
+t_img	*ft_save_xpm(t_mlx *mlx, char *path);
 
 /* ------------------------------- ft_create_minimap -------------------------------*/
 void	ft_create_minimap(void *mlx, void *mlx_win, int width, int height);
@@ -128,7 +129,7 @@ double	ft_normalize_angle(double angle);
 
 void	ft_calculate_viewport(double angle, double *min_angle, double *max_angle);
 double	ft_calculate_wall_height(double ray_distance);
-void	ft_paint_column(t_mlx *mlx, int x, int wall_height);
+void	ft_paint_column(t_mlx *mlx, t_img *img, int x, double max_angle);
 void	ft_lightning_gun(char **map, double angle, t_mlx *mlx);
 
 /*===============================================================================*/
@@ -137,5 +138,7 @@ void	ft_lightning_gun(char **map, double angle, t_mlx *mlx);
 
 int	key_hook(int keycode, t_mlx *mlx);
 int	ft_main_loop(t_mlx *mlx);
+int	ft_get_texture_x(double player_x, double player_y,  double angle, char **map);
+int	ft_get_texture_y(double player_x, double player_y,  double angle, char **map);
 
 #endif 

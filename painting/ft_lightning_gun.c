@@ -6,11 +6,23 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 13:47:24 by jperez            #+#    #+#             */
-/*   Updated: 2023/04/08 13:07:50 by jperez           ###   ########.fr       */
+/*   Updated: 2023/04/10 20:18:50 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "../cub3d.h"
+
+void	*ft_send_height_and_angle(double wall_height, double angle)
+{
+	double	*output;
+
+	output = (double *)malloc(sizeof(double) * 2);
+	if (!output)
+		exit(-1);
+	output[0] = wall_height;
+	output[1] = angle;
+	return (output);
+}
 
 void	ft_lightning_gun(char **map, double angle, t_mlx *mlx)
 {
@@ -29,7 +41,6 @@ void	ft_lightning_gun(char **map, double angle, t_mlx *mlx)
 	printf("min: %f\nmax: %f\n", min_angle, max_angle);
 	#endif
 
-	//mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->background->mlx_img, 0, 0);
 	while (x < WIN_WIDTH)
 	{
 		#ifdef DEBUG
@@ -43,23 +54,18 @@ void	ft_lightning_gun(char **map, double angle, t_mlx *mlx)
 		#endif
 
 
+		/*
 		wall_height = ft_calculate_wall_height(ft_raycasting(\
 			mlx->player_x, mlx->player_y, max_angle, mlx->map));
-		#ifdef DEBUG
 		printf("Wall_height: %f\n", wall_height);
-		#endif
+		*/
 
+		ft_paint_column(mlx, img, x, max_angle);
 
-
-		ft_edit_img(img, mlx, x, wall_height);
-		//ft_paint_column(mlx, x, ft_round_number(wall_height));
+		//ft_edit_img(img, mlx, x, wall_height);
 
 
 		max_angle -= ANGLE_GAP;
-		/*
-		if (min_angle > 2 * M_PI)
-			min_angle -= 2 * M_PI;
-			*/
 		if (max_angle < 0)
 			max_angle += 2 * M_PI;
 

@@ -6,7 +6,7 @@
 #    By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/12 14:10:40 by jperez            #+#    #+#              #
-#    Updated: 2023/04/07 18:27:11 by jperez           ###   ########.fr        #
+#    Updated: 2023/04/08 18:11:03 by jperez           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -76,10 +76,8 @@ SRC = main.c				\
 	   utils/ft_manage_imgs.c		\
 	   ft_create_minimap.c			\
 	   raycasting/ft_manage_angles.c	\
-	   raycasting/ft_assing_xy_variables.c	\
 	   raycasting/ft_raycasting_aux.c	\
 	   raycasting/ft_raycasting.c	\
-	   raycasting/ft_manage_colisions.c	\
 	   utils/ft_print_map.c				\
 	   utils/ft_save_map.c				\
 	   utils/ft_get_next_line.c			\
@@ -92,6 +90,8 @@ SRC = main.c				\
 	   raycasting/ft_vertical_colisions.c	\
 	   raycasting/ft_horizontal_colisions.c	\
 	   hooks/ft_key_hooks.c					\
+	   painting/ft_get_texture_x.c		\
+	   painting/ft_get_texture_y.c		\
 
 HEADER := cub3D.h
 		

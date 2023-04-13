@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:37:18 by jperez            #+#    #+#             */
-/*   Updated: 2023/04/07 18:46:41 by jperez           ###   ########.fr       */
+/*   Updated: 2023/04/10 17:30:32 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	ft_find_pos(char **map, double *x, double *y)
 	}
 }
 
+
 int	main(int argc, char **argv)
 {
 	t_mlx	*mlx;
@@ -68,6 +69,9 @@ int	main(int argc, char **argv)
 	mlx->floor = 0x000000;
 	mlx->sky = 0xFF0000;
 
+
+
+	mlx->wall = ft_save_xpm(mlx, "./img_cub.xpm");
 	ft_lightning_gun(mlx->map, mlx->angle, mlx);
 
 

@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/31 17:06:04 by jperez            #+#    #+#             */
-/*   Updated: 2023/04/08 12:43:13 by jperez           ###   ########.fr       */
+/*   Updated: 2023/04/10 20:10:15 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,12 @@ double	ft_horizontal_colisions(double player_x, double player_y,  double angle, 
 	double	ray_gap_x;
 	double	ray_gap_y;
 
+	#ifdef DEBUG
+	printf("--->Player_x: %f\n", player_x);
+	printf("--->Player_y: %f\n", player_y);
+	printf("--->Angle: %f\n", angle);
+	printf("\n");
+	#endif
 	ray_y = ft_get_ray_y(player_y, angle);
 	ray_x = ft_get_ray_x(player_x, player_y, ray_y, angle);
 
@@ -71,7 +77,7 @@ double	ft_horizontal_colisions(double player_x, double player_y,  double angle, 
 		ray_y += ray_gap_y;
 		
 		#ifdef DEBUG
-		printf("-------------------------\n\n");
+		printf(".-------------------------\n\n");
 		#endif
 	}
 	return (ft_get_distance(player_x, player_y, ray_x, ray_y));
