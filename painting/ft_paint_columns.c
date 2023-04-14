@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 19:20:55 by jperez            #+#    #+#             */
-/*   Updated: 2023/04/14 18:59:41 by jperez           ###   ########.fr       */
+/*   Updated: 2023/04/14 20:26:23 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,19 @@ void	ft_paint_ceiling(t_img *img, int img_x, double wall_height, int ceiling_col
 		my_mlx_pixel_put(img, img_x, img_y, ceiling_color);
 }
 
+void	ft_paint_wall(t_img *img, t_img *texture, int img_x, double wall_height, int texture_index)
+{
+	int		img_y;
+	int		start;
+	float	scale;
+
+	scale = texture->height / wall_height;
+	start = (WIN_HEIGHT - wall_height) / 2;
+	img_y = start;
+	while (img_y < start + wall_height)
+		my_mlx_pixel_put(img, img_x, img_y, ft_get_texture_pixel(texture, texture_index, (img_y++ - start) * scale));
+}
+
 void	ft_paint_floor(t_img *img, int img_x, double wall_height, int floor_color)
 {
 	int	img_y;
@@ -51,20 +64,17 @@ void	ft_paint_floor(t_img *img, int img_x, double wall_height, int floor_color)
 		my_mlx_pixel_put(img, img_x, img_y++, floor_color);
 }
 
-void	ft_paint_wall(t_img *img, t_img *texture, int img_x, double wall_height, int texture_index)
+t_img	*ft_choose_texture(t_game *game, int orientation, double max_angle)
 {
-	int		img_y;
-	int		start;
-	float	scale;
-
-	scale = texture->height / wall_height;
-	printf("Scale: %f\n", scale);
-	start = (WIN_HEIGHT - wall_height) / 2;
-	img_y = start;
-	while (img_y < start + wall_height)
-		my_mlx_pixel_put(img, img_x, img_y, ft_get_texture_pixel(texture, texture_index, (img_y++ - start) * scale));
+	if (ft_angle_in_range(0, M_PI, max_angle) && orientation == HORIZONTAL)
+		return (game->no_texture);
+	else if (ft_angle_in_range(M_PI, 2 * M_PI, max_angle) && orientation == HORIZONTAL)
+		return (game->so_texture);
+	else if (ft_angle_in_range(M_PI_2, M_PI_3_2, max_angle) && orientation == VERTICAL)
+		return (game->we_texture);
+	else
+		return (game->ea_texture);
 }
-
 
 void	ft_paint_column(t_game *game, t_img *img, int ray_x, double max_angle)
 {
@@ -85,7 +95,7 @@ void	ft_paint_column(t_game *game, t_img *img, int ray_x, double max_angle)
 
 
 	ft_paint_ceiling(img, ray_x, wall_height, game->ceiling_color);
-	ft_paint_wall(img, game->no_texture, ray_x, wall_height, texture_index);
+	ft_paint_wall(img, ft_choose_texture(game, colision->orientation, max_angle), ray_x, wall_height, texture_index);
 	ft_paint_floor(img, ray_x, wall_height, game->floor_color);
 
 

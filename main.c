@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:37:18 by jperez            #+#    #+#             */
-/*   Updated: 2023/04/14 18:58:36 by jperez           ###   ########.fr       */
+/*   Updated: 2023/04/14 20:38:06 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,10 @@ int	main(int argc, char **argv)
 
 
 
-	game->no_texture = ft_save_xpm(game, "./img_cub.xpm");
+	game->no_texture = ft_save_xpm(game, "./no_texture.xpm");
+	game->ea_texture = ft_save_xpm(game, "./ea_texture.xpm");
+	game->so_texture = ft_save_xpm(game, "./so_texture.xpm");
+	game->we_texture = ft_save_xpm(game, "./we_texture.xpm");
 	printf("texture_height: %d\n", game->no_texture->height);
 	ft_lightning_gun(game->map, game->player[angle], game);
 
