@@ -49,6 +49,12 @@ enum
 	HORIZONTAL, VERTICAL,
 };
 
+enum {
+	x,
+	y,
+	angle,
+};
+
 typedef struct s_colision
 {
 	double	colision_x;
@@ -81,18 +87,18 @@ typedef struct s_mlx
 	t_img	*wall;
 }	t_mlx;
 
-// typedef struct s_game{
-// 	void		*mlx;
-// 	void		*window;
-// 	t_texture	*no_texture;
-// 	t_texture	*ea_texture;
-// 	t_texture	*so_texture;
-// 	t_texture	*we_texture;
-// 	int			floor_color;
-// 	int			ceiling_color;
-// 	char		**map;
-// 	double		player[3];
-// }	t_game;
+typedef struct s_game{
+	void		*mlx;
+	void		*window;
+	t_img	*no_texture;
+	t_img	*ea_texture;
+	t_img	*so_texture;
+	t_img	*we_texture;
+	int			floor_color;
+	int			ceiling_color;
+	char		**map;
+	double		player[3];
+}	t_game;
 
 int	ft_get_quadrant(double angle);
 /*===============================================================================*/
@@ -157,8 +163,8 @@ double	ft_normalize_angle(double angle);
 
 void	ft_calculate_viewport(double angle, double *min_angle, double *max_angle);
 double	ft_calculate_wall_height(double ray_distance);
-void	ft_paint_column(t_mlx *mlx, t_img *img, int x, double max_angle);
-void	ft_lightning_gun(char **map, double angle, t_mlx *mlx);
+void	ft_paint_column(t_game *game, t_img *img, int x, double max_angle);
+void	ft_lightning_gun(char **map, double angle, t_game *game);
 void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
 int ft_get_texture_pixel(t_img *img, int x, int y);
 t_img	*ft_create_img(void *mlx, int width, int height);
@@ -167,8 +173,8 @@ t_img	*ft_create_img(void *mlx, int width, int height);
 /*									PAINTING									 */
 /*===============================================================================*/
 
-int	key_hook(int keycode, t_mlx *mlx);
-int	ft_main_loop(t_mlx *mlx);
+int	key_hook(int keycode, t_game *game);
+int	ft_main_loop(t_game *game);
 int	ft_get_texture_x(double player_x, double player_y,  double angle, char **map);
 int	ft_get_texture_y(double player_x, double player_y,  double angle, char **map);
 

@@ -24,7 +24,7 @@ void	*ft_send_height_and_angle(double wall_height, double angle)
 	return (output);
 }
 
-void	ft_lightning_gun(char **map, double angle, t_mlx *mlx)
+void	ft_lightning_gun(char **map, double angle, t_game *game)
 {
 	int		x;
 	double	wall_height;
@@ -34,8 +34,8 @@ void	ft_lightning_gun(char **map, double angle, t_mlx *mlx)
 
 	ft_calculate_viewport(angle, &min_angle, &max_angle);
 	x = 0;
-	mlx_clear_window(mlx->mlx, mlx->mlx_win);
-	img = ft_create_img(mlx->mlx, WIN_WIDTH, WIN_HEIGHT);
+	mlx_clear_window(game->mlx, game->window);
+	img = ft_create_img(game->mlx, WIN_WIDTH, WIN_HEIGHT);
 
 	#ifdef DEBUG
 	printf("min: %f\nmax: %f\n", min_angle, max_angle);
@@ -49,8 +49,8 @@ void	ft_lightning_gun(char **map, double angle, t_mlx *mlx)
 		printf("==============================================\n");
 		printf("Angle: %f\n", max_angle);
 		printf("Normalize-angle: %f\n", ft_normalize_angle(max_angle));
-		printf("Player_x: %f\n", mlx->player_x);
-		printf("Player_y: %f\n\n", mlx->player_y);
+		printf("Player_x: %f\n", game->player[x]);
+		printf("Player_y: %f\n\n", game->player[y]);
 		#endif
 
 
@@ -60,7 +60,7 @@ void	ft_lightning_gun(char **map, double angle, t_mlx *mlx)
 		printf("Wall_height: %f\n", wall_height);
 		*/
 
-		ft_paint_column(mlx, img, x, max_angle);
+		ft_paint_column(game, img, x, max_angle);
 
 		//ft_edit_img(img, mlx, x, wall_height);
 
@@ -75,6 +75,6 @@ void	ft_lightning_gun(char **map, double angle, t_mlx *mlx)
 		printf("\n\n\n\n");
 		#endif
 	}
-	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, img->mlx_img, 0, 0);
+	mlx_put_image_to_window(game->mlx, game->window, img->mlx_img, 0, 0);
 	free(img);
 }

@@ -23,12 +23,12 @@ void	ft_put_texture_pixel(t_img *src_img, t_img *dst_img, int x, int y)
 }
 
 //int	ft_get_pixel
-int	ft_get_texture_index(t_mlx *mlx, double max_angle, int orientation)
+int	ft_get_texture_index(t_game *game, double max_angle, int orientation)
 {
 	if (orientation == HORIZONTAL)
-		return (ft_get_texture_x(mlx->player_x, mlx->player_y, max_angle, mlx->map));
+		return (ft_get_texture_x(game->player[x], game->player[y], max_angle, game->map));
 	else
-		return (ft_get_texture_y(mlx->player_x, mlx->player_y, max_angle, mlx->map));
+		return (ft_get_texture_y(game->player[x], game->player[y], max_angle, game->map));
 }
 
 void	ft_paint_sky(t_img *img, int img_x, double wall_height, int sky_color)
@@ -65,15 +65,17 @@ void	ft_paint_wall(t_img *img, t_img *texture, int img_x, double wall_height, in
 }
 
 
-void	ft_paint_column(t_mlx *mlx, t_img *img, int x, double max_angle)
+void	ft_paint_column(t_game *game, t_img *img, int ray_x, double max_angle)
 {
 	t_colision	*colision;
 	int		texture_index;
 	double	wall_height;
 
-	colision = ft_raycasting(mlx->player_x, mlx->player_y, max_angle, mlx->map);
+	// printf("player_x: %f\n", game->player[x]);
+	// printf("player_y: %f\n", game->player[y]);
+	colision = ft_raycasting(game->player[x], game->player[y], max_angle, game->map);
 	wall_height = ft_calculate_wall_height(colision->distance);
-	texture_index = ft_get_texture_index(mlx, max_angle, colision->orientation);
+	texture_index = ft_get_texture_index(game, max_angle, colision->orientation);
 
 	#ifdef DEBUG
 	printf("Wall_height: %f\n", wall_height);
@@ -81,13 +83,9 @@ void	ft_paint_column(t_mlx *mlx, t_img *img, int x, double max_angle)
 	#endif
 
 
-	#ifdef DEBUG
-	printf("texture_x: %d\n", texture_x);
-	printf("texture_y: %d\n", texture_y);
-	#endif
 	//ft_paint_sky(img, x, wall_height, mlx->sky);
 	//ft_paint_wall(img, mlx->wall, x, wall_height, texture_index);
 	//ft_paint_sky(img, x, wall_height, mlx->sky);
-	ft_edit_img(img, mlx, x, wall_height);
+	ft_edit_img(img, game, ray_x, wall_height);
 	free(colision);
 }

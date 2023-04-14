@@ -47,7 +47,7 @@ int worldMap[mapWidth][mapHeight]=
   {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
 };
 
-void	ft_create_minimap(void *mlx, void *mlx_win, int width, int height)
+void	ft_create_minimap(void *mlx, void *window, int width, int height)
 {
 	int		x;
 	int		y;
@@ -68,9 +68,9 @@ void	ft_create_minimap(void *mlx, void *mlx_win, int width, int height)
 		while (++x * size < mapWidth * size)
 		{
 			if (worldMap[y][x] == 0)
-				mlx_put_image_to_window(mlx, mlx_win, wall->mlx_img, x * size, y * size);
+				mlx_put_image_to_window(mlx, window, wall->mlx_img, x * size, y * size);
 			else
-				mlx_put_image_to_window(mlx, mlx_win, floor->mlx_img, x * size, y * size);
+				mlx_put_image_to_window(mlx, window, floor->mlx_img, x * size, y * size);
 		}
 	}
 }
