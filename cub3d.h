@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:55:17 by jperez            #+#    #+#             */
-/*   Updated: 2023/04/11 19:45:27 by jperez           ###   ########.fr       */
+/*   Updated: 2023/04/13 20:45:45 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,19 @@ enum{
     ESC_KEY = 153,
 };
 
+enum
+{
+	HORIZONTAL, VERTICAL,
+};
+
+typedef struct s_colision
+{
+	double	colision_x;
+	double	colision_y;
+	double	distance;
+	int		orientation;
+}	t_colision;
+
 typedef struct s_img
 {
 	void	*mlx_img;
@@ -51,6 +64,8 @@ typedef struct s_img
 	int		bpp; /* bits per pixel */
 	int		line_len;
 	int		endian;
+	int		height;
+	int		width;
 }	t_img;
 
 typedef struct s_mlx
@@ -65,6 +80,19 @@ typedef struct s_mlx
 	int		floor;
 	t_img	*wall;
 }	t_mlx;
+
+// typedef struct s_game{
+// 	void		*mlx;
+// 	void		*window;
+// 	t_texture	*no_texture;
+// 	t_texture	*ea_texture;
+// 	t_texture	*so_texture;
+// 	t_texture	*we_texture;
+// 	int			floor_color;
+// 	int			ceiling_color;
+// 	char		**map;
+// 	double		player[3];
+// }	t_game;
 
 int	ft_get_quadrant(double angle);
 /*===============================================================================*/
@@ -109,7 +137,7 @@ void	ft_assing_x_variable(double player_x, double angle, double *ray_gap_x, doub
 
 /* ------------------------------- ft_create_minimap -------------------------------*/
 double	ft_return_min(double horizontal_colision, double vertical_colision);
-double	ft_raycasting(double player_x, double player_y, double angle, char **map);
+t_colision	*ft_raycasting(double player_x, double player_y, double angle, char **map);
 double	ft_first_quadrant(double player_x, double player_y, double angle, char **map);
 double	ft_second_quadrant(double player_x, double player_y, double angle, char **map);
 double	ft_third_quadrant(double player_x, double player_y, double angle, char **map);
@@ -131,6 +159,9 @@ void	ft_calculate_viewport(double angle, double *min_angle, double *max_angle);
 double	ft_calculate_wall_height(double ray_distance);
 void	ft_paint_column(t_mlx *mlx, t_img *img, int x, double max_angle);
 void	ft_lightning_gun(char **map, double angle, t_mlx *mlx);
+void	my_mlx_pixel_put(t_img *img, int x, int y, int color);
+int ft_get_texture_pixel(t_img *img, int x, int y);
+t_img	*ft_create_img(void *mlx, int width, int height);
 
 /*===============================================================================*/
 /*									PAINTING									 */

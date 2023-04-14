@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 17:45:41 by jperez            #+#    #+#             */
-/*   Updated: 2023/04/10 20:17:07 by jperez           ###   ########.fr       */
+/*   Updated: 2023/04/13 18:24:18 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,5 @@ int	ft_get_texture_x(double player_x, double player_y,  double angle, char **map
 		ray_x += ray_gap_x;
 		ray_y += ray_gap_y;
 	}
-	return (ft_get_distance(player_x, player_y, ray_x, ray_y));
+	return ((int)floor(ray_x) % UNIT);
 }

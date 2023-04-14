@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/25 13:47:24 by jperez            #+#    #+#             */
-/*   Updated: 2023/04/10 20:18:50 by jperez           ###   ########.fr       */
+/*   Updated: 2023/04/13 19:45:39 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,5 @@ void	ft_lightning_gun(char **map, double angle, t_mlx *mlx)
 		#endif
 	}
 	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, img->mlx_img, 0, 0);
+	free(img);
 }
