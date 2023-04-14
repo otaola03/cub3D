@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:55:17 by jperez            #+#    #+#             */
-/*   Updated: 2023/04/13 20:45:45 by jperez           ###   ########.fr       */
+/*   Updated: 2023/04/14 18:32:26 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,9 +107,9 @@ int	ft_get_quadrant(double angle);
 
 /* ------------------------------- ft_manage_imgs -------------------------------*/
 t_img *ft_create_img(void *mlx, int width, int height);
-void	ft_edit_img(t_img *img, t_mlx *mlx, int x, int wall_height);
+void	ft_edit_img(t_img *img, t_game *game, int x, int wall_height);
 void	ft_create_background(t_img *img, int floor, int sky);
-t_img	*ft_save_xpm(t_mlx *mlx, char *path);
+t_img	*ft_save_xpm(t_game *game, char *path);
 
 /* ------------------------------- ft_create_minimap -------------------------------*/
 void	ft_create_minimap(void *mlx, void *mlx_win, int width, int height);

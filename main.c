@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:37:18 by jperez            #+#    #+#             */
-/*   Updated: 2023/04/10 17:30:32 by jperez           ###   ########.fr       */
+/*   Updated: 2023/04/14 18:31:21 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int	main(int argc, char **argv)
 
 
 
-	//game->wall = ft_save_xpm(game, "./img_cub.xpm");
+	game->no_texture = ft_save_xpm(game, "./img_cub.xpm");
 	ft_lightning_gun(game->map, game->player[angle], game);
 
 
