@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 19:20:55 by jperez            #+#    #+#             */
-/*   Updated: 2023/04/14 17:56:02 by jperez           ###   ########.fr       */
+/*   Updated: 2023/04/14 18:59:41 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_get_texture_index(t_game *game, double max_angle, int orientation)
 		return (ft_get_texture_y(game->player[x], game->player[y], max_angle, game->map));
 }
 
-void	ft_paint_sky(t_img *img, int img_x, double wall_height, int sky_color)
+void	ft_paint_ceiling(t_img *img, int img_x, double wall_height, int ceiling_color)
 {
 	int	img_y;
 	int	end;
@@ -39,7 +39,7 @@ void	ft_paint_sky(t_img *img, int img_x, double wall_height, int sky_color)
 	end	= (WIN_HEIGHT - wall_height) / 2;
 	img_y = -1;
 	while (++img_y < end)
-		my_mlx_pixel_put(img, img_x, img_y, sky_color);
+		my_mlx_pixel_put(img, img_x, img_y, ceiling_color);
 }
 
 void	ft_paint_floor(t_img *img, int img_x, double wall_height, int floor_color)
@@ -51,17 +51,18 @@ void	ft_paint_floor(t_img *img, int img_x, double wall_height, int floor_color)
 		my_mlx_pixel_put(img, img_x, img_y++, floor_color);
 }
 
-void	ft_paint_wall(t_img *img, t_img *texture, int img_x, double wall_height, int texture_x)
+void	ft_paint_wall(t_img *img, t_img *texture, int img_x, double wall_height, int texture_index)
 {
 	int		img_y;
 	int		start;
 	float	scale;
 
 	scale = texture->height / wall_height;
+	printf("Scale: %f\n", scale);
 	start = (WIN_HEIGHT - wall_height) / 2;
 	img_y = start;
 	while (img_y < start + wall_height)
-		my_mlx_pixel_put(img, img_x, img_y, ft_get_texture_pixel(texture, texture_x, (img_y - start) * scale));
+		my_mlx_pixel_put(img, img_x, img_y, ft_get_texture_pixel(texture, texture_index, (img_y++ - start) * scale));
 }
 
 
@@ -83,9 +84,11 @@ void	ft_paint_column(t_game *game, t_img *img, int ray_x, double max_angle)
 	#endif
 
 
-	//ft_paint_sky(img, x, wall_height, mlx->sky);
-	//ft_paint_wall(img, mlx->wall, x, wall_height, texture_index);
-	//ft_paint_sky(img, x, wall_height, mlx->sky);
-	ft_edit_img(img, game, ray_x, wall_height);
+	ft_paint_ceiling(img, ray_x, wall_height, game->ceiling_color);
+	ft_paint_wall(img, game->no_texture, ray_x, wall_height, texture_index);
+	ft_paint_floor(img, ray_x, wall_height, game->floor_color);
+
+
+	//ft_edit_img(img, game, ray_x, wall_height);
 	free(colision);
 }

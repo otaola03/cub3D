@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/19 18:41:56 by jperez            #+#    #+#             */
-/*   Updated: 2023/04/14 18:32:50 by jperez           ###   ########.fr       */
+/*   Updated: 2023/04/14 18:58:15 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,15 @@ t_img	*ft_create_img(void *mlx, int width, int height)
 t_img	*ft_save_xpm(t_game *game, char *path)
 {
 	t_img	*img;
+	int		height;
+	int		width;
 
 
 	img = (t_img *)malloc(sizeof(t_img));
 	img->mlx_img = mlx_xpm_file_to_image(game->mlx, path, &img->width, &img->height);
 	img->addr = mlx_get_data_addr(img->mlx_img, &img->bpp, &img->line_len, &img->endian);
+	printf("IMG_height: %d\n", img->height);
+	return(img);
 }
 
 void	ft_edit_img(t_img *img, t_game *game, int x, int wall_height)

@@ -6,7 +6,7 @@
 /*   By: jperez <jperez@student.42urduliz.>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 17:37:18 by jperez            #+#    #+#             */
-/*   Updated: 2023/04/14 18:31:21 by jperez           ###   ########.fr       */
+/*   Updated: 2023/04/14 18:58:36 by jperez           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,13 @@ int	main(int argc, char **argv)
 
 	game->mlx = mlx_init();
 	game->window = mlx_new_window(game->mlx, WIN_WIDTH, WIN_HEIGHT, "Hello world!");
-	game->floor_color = 0x000000;
+	game->floor_color = 0xFF0B94;
 	game->ceiling_color = 0xFF0000;
 
 
 
 	game->no_texture = ft_save_xpm(game, "./img_cub.xpm");
+	printf("texture_height: %d\n", game->no_texture->height);
 	ft_lightning_gun(game->map, game->player[angle], game);
 
 
